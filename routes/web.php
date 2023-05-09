@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = \App\Models\User::search('Ma')
+        ->paginate(2, 'mi_custom_page');
+
+    return view('welcome', ['users' => $users]);
 });
